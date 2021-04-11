@@ -5,3 +5,5 @@
 - 
 
 3. A website page can only be accessed with CAPTCHA. How do you test that page? 
+- Completely disable captcha for the purposes of the test.
+- Configure the captcha software to accept anything that is typed as being valid.
