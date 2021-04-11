@@ -1,0 +1,145 @@
+REM================================LOGIN BUKALAPAK ===============================
+
+
+SystemUtil.Run "chrome.exe","https://www.bukalapak.com/",,,3
+
+Dim dt_username,dtpassword (declare parameter)
+
+
+dt_username = DataTable.Value("USERNAME",dtLocalSheet)
+dt_password = DataTable.Value("PASSWORD",dtLocalSheet)
+
+
+REM========================== Function Login Bukalapak ==========================================
+
+Call Login()
+Call click_katagori_barang()
+Call click_menu_sepeda()
+Call click_diskon_sepeda()
+Call click_list_Barang()
+Call click_AddToChart()
+'
+
+Function Login()
+	
+	If Browser("Situs Belanja Online dan").WebElement("button_Login_dasboard").Exist(10) then
+	wait 1
+	Browser("Situs Belanja Online dan").WebElement("button_Login_dasboard").Click
+	
+    If Browser("Situs Belanja Online dan").WebEdit("input_Username").Exist(5) then
+        wait 1
+	   Browser("Situs Belanja Online dan").WebEdit("input_Username").Set dt_username
+	   
+    If Browser("Situs Belanja Online dan").WebEdit("input_Password").Exist(5) then
+        wait 1
+        Browser("Situs Belanja Online dan").WebEdit("input_Password").Set dt_password
+
+     If Browser("Situs Belanja Online dan").WebButton("button_Login").Exist(5) then
+       wait 1
+       Browser("Situs Belanja Online dan").WebButton("button_Login").Click
+ Else
+      Call kill_browser()
+      
+        End If
+     End If
+  End If
+End If	
+	
+	
+	
+End Function
+
+
+Function click_katagori_barang()
+	
+	
+If Browser("Situs Belanja Online dan").WebElement("button_Kategori barang").Exist(5) then
+   wait 1
+   Browser("Situs Belanja Online dan").WebElement("button_Kategori barang").Click
+Else
+    Call kill_browser()
+End If
+
+End Function
+
+
+
+Function click_menu_sepeda()
+	
+
+
+If Browser("Situs Belanja Online dan").Link("click_menu_Sepeda").Exist(5) then
+   wait 1
+   Browser("Situs Belanja Online dan").Link("click_menu_Sepeda").Click
+Else
+   Call kill_browser()
+End If
+	
+	
+End Function
+
+
+
+Function click_diskon_sepeda()
+	
+	
+If Browser("Situs Belanja Online dan").WebElement("button_Diskon Sepeda").Exist(8) then
+   wait 1
+   Browser("Situs Belanja Online dan").WebElement("button_Diskon Sepeda").Click
+Else
+    Call kill_browser()
+End If
+   
+	
+	
+End Function
+
+
+Function click_list_Barang()
+
+
+If Browser("Situs Belanja Online dan").Link("list_Barang").Exist(5) then
+   wait 1
+	Browser("Situs Belanja Online dan").Link("list_Barang").Click
+Else
+   Call kill_browser()
+End If
+
+
+End Function
+
+
+Function click_AddToChart()
+	
+
+If Browser("Situs Belanja Online dan").WebButton("button_Masukkan Keranjang").Exist(5) then
+   
+	Browser("Situs Belanja Online dan").WebButton("button_Masukkan Keranjang").Click
+	
+If Browser("Situs Belanja Online dan").WebElement("text_Keranjang Belanja").Exist(5) then
+
+    Browser("Situs Belanja Online dan").WebButton("button_Lihat Keranjang").Click  
+Else
+   Call kill_browser()
+   
+  End If
+End If
+	
+	
+End Function
+
+
+
+
+
+
+
+Function kill_browser()
+	
+'
+Browser("Situs Belanja Online dan").Close	
+	
+	
+End Function
+
+'
