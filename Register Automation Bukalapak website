@@ -1,0 +1,80 @@
+SystemUtil.Run "chrome.exe","https://www.bukalapak.com/",,,3
+
+Dim dt_username, dt_password,dt_email,dt_passwordemail
+
+
+dt_email         = DataTable.Value ("EMAIL",dtLocalSheet)
+dt_passwordemail = DataTable.Value ("PASSWORD_EMAIL",dtLocalSheet)
+
+
+REM============================ Function Registrasi ==================================================
+Call click_daftar()
+Call using_google_account()
+Call input_Email()
+Call click_button_next()
+Call input_Password_email()
+Call click_button_next()
+Call click_mulai_belanja()
+
+Function click_daftar()
+	
+If Browser("Sign in - Google Accounts").Image("logo bukalapak").Exist(10) then
+
+   Browser("Registrasi").WebElement("button_Daftar").Click
+Else
+'    NOTHING
+End If
+	
+End Function
+
+Function input_Email()
+	
+wait 1
+Browser("Sign in - Google Accounts").WebEdit("input_Email or phone").Set dt_email	
+	
+	
+End Function
+
+
+Function input_Password_email()
+	
+wait 1
+Browser("Sign in - Google Accounts").WebEdit("input_Password").Set dt_passwordemail
+
+
+End Function
+
+
+Function using_google_account()
+	
+wait 4
+Browser("Registrasi").WebButton("button_Google").DoubleClick
+wait 2
+Browser("Sign in - Google Accounts").WebElement("click_Use another account").Click
+
+	
+End Function
+
+
+Function click_button_next()
+
+wait 1
+Browser("Sign in - Google Accounts").WebElement("button_next").Click
+
+	
+	
+End Function
+
+
+Function click_mulai_belanja()
+	
+	
+If Browser("Registrasi").WebElement("text_akunBerhasilDiBuat").Exist(10) then
+   
+   Browser("Registrasi").WebButton("button_Mulai belanja").Click
+Else
+'    NOTHING
+End If
+
+End Function
+
