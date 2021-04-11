@@ -1,0 +1,29 @@
+*** Settings ***
+Library  RequestsLibrary
+Library  Collections
+Library  JSONLibrary
+Library  OperatingSystem
+Library  String
+
+*** Variables ***
+${uri}=          posts
+${url}=           https://jsonplaceholder.typicode.com/
+
+
+*** Test Cases ***
+Post_Method_Robot
+    create session      post_method_robot      ${url}                 verify=True   
+    ${headers}=     create dictionary     Content-Type=application/json          
+    ${resp}=        post request     post_method_robot       ${uri}     ${headers}        
+
+    #validation
+    should be equal as strings      ${resp.json()['userId']}        recommendation    
+    should be equal as integers      ${resp.json()['title']}        motorcycle
+    should be equal as integers      ${resp.json()['body']}         12
+
+
+
+
+
+
+
