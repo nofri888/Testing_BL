@@ -1,0 +1,7 @@
+1. What is a flaky test?
+- A ﬂaky test is an analysis of web application code that fails to produce the same result each time the same analysis is run. Whenever new code is written to develop or update computer software, a web page or an app, it needs to be tested throughout the development process to make sure the application does what it’s supposed to do when it’s released for use.
+
+2. An element in a website is using ajax/javascript to show the data (processed as asynchronous). What do you do to test that element?
+- 
+
+3. A website page can only be accessed with CAPTCHA. How do you test that page? 
